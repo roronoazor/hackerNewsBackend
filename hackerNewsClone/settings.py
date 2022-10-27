@@ -34,6 +34,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'hacker-news-clone-1',
     'hackerNewsClone.herokuapp.com',
     '127.0.0.1'
 ]
