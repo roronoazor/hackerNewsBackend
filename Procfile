@@ -1,1 +1,1 @@
-web: gunicorn hackerNewsClone.wsgi --log-file 
+web: gunicorn hackerNewsClone.wsgi 
