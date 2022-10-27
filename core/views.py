@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics, status, response
 from .queries.get_items import get_items_query
-from .serializers import GetItemSerializer
+from .serializers import GetItemSerializer, CreateItemSerializer
+from .models import Item
 
 # Create your views here.
 class GetCreateItemView(generics.ListCreateAPIView):
@@ -14,8 +15,10 @@ class GetCreateItemView(generics.ListCreateAPIView):
         return self.get_paginated_response(serializer.data)
     
     def post(self, request, *args, **kwargs):
-        pass
-    
-    
-        return response.Response({'data': 'ok'}, status=status.HTTP_201_CREATED)
+                
+        serializer = CreateItemSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     

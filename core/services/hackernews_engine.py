@@ -75,7 +75,8 @@ class HackerNewsEngine:
             lambda data: Item(reference_id=data.get("id"), **data),
             self.pipeline_data
         )), 
-        1000 # batch size 
+        1000, # batch size 
+        ignore_conflicts=True
         )
         
     @transaction.atomic
@@ -87,10 +88,12 @@ class HackerNewsEngine:
         last_item_id = last_item_from_hackernews.reference_id if last_item_from_hackernews else 1
         
         
-        loop = asyncio.get_event_loop()
-        future = asyncio.ensure_future(self.start_hackernews_sync(last_item_id))
-        loop.run_until_complete(future)
-        loop.close()
+        # loop = asyncio.get_event_loop()
+        # future = asyncio.ensure_future(self.start_hackernews_sync(last_item_id))
+        # loop.run_until_complete(future)
+        # loop.close()
+        
+        asyncio.run(self.start_hackernews_sync(last_item_id))
         
         self.persist_data()
 

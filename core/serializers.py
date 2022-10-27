@@ -8,3 +8,9 @@ class GetItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = '__all__'
         
+        
+class CreateItemSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Item
+        exclude = ['id', 'deleted', 'reference_id']
