@@ -8,8 +8,9 @@ class Command(BaseCommand):
         try:
             engine = HackerNewsEngine()
             engine.run()
-        except Exception:
+        except Exception as e:
             self.stdout.write(self.style.ERROR('Failed to sync.'))
+            self.stdout.write(self.style.ERROR(e))
             return
 
         self.stdout.write(self.style.SUCCESS('Successfully synced'))
