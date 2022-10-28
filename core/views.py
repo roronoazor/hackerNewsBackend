@@ -28,7 +28,7 @@ class DeleteItemView(generics.DestroyAPIView):
     
     def delete(self, request, *args, **kwargs):
         
-        id = self.kwargs("id")
+        id = self.kwargs.get("id")
         try:
           delete_items_query(id)
           return response.Response({'message': "success"}, status=status.HTTP_200_OK)
