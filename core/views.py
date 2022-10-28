@@ -30,6 +30,7 @@ class DeleteItemView(generics.DestroyAPIView):
         
         try:
           delete_items_query(request)
+          return response.Response({'message': "success"}, status=status.HTTP_200_OK)
         except Exception as e:
             # flesh out this error handling better, dont forget
             return response.Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
