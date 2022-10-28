@@ -15,7 +15,7 @@ run the risk of losing your data or having service denied to you.
 took advantage of the free heroku scheduler add-on that heroku offers. a custom manage.py command was created and then that command was set to run every 10
 mins by the heroku scheduler.  
 
-*The django app is currently hosted at **https://hacker-news-clone-1.herokuapp.com/***
+*The django app is currently hosted at **https://hacker-news-clone-1.herokuapp.com/***  
 *The frontend of the app is hosted at **https://master--shimmering-daffodil-edb8cd.netlify.app/***
 
 *Thanks for reading.*
