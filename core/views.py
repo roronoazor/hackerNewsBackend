@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status, response
 from .queries.get_items import get_items_query
+from .queries.delete_item import delete_items_query
 from .serializers import GetItemSerializer, CreateItemSerializer
 from .models import Item
 
@@ -22,3 +23,13 @@ class GetCreateItemView(generics.ListCreateAPIView):
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+class DeleteItemView(generics.DestroyAPIView):
+    
+    def delete(self, request, *args, **kwargs):
+        
+        try:
+          delete_items_query(request)
+        except Exception as e:
+            # flesh out this error handling better, dont forget
+            return response.Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)

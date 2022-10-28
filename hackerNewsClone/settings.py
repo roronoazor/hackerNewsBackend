@@ -149,5 +149,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
    'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination.CustomPagination',
-   'PAGE_SIZE': 100
+   'PAGE_SIZE': 20
 }
