@@ -19,7 +19,7 @@ def get_items_query(request):
         filters['title__icontains'] = request.query_params.get(PARAM_QUERY_BY_TEXT, '')
         
     return Item.objects.filter( 
-                               Q(type=request.query_params.get('type')) |
+                               Q(type=filters.get('type')) |
                                Q(text__icontains=filters.get('text__icontains')) |
                                Q(title__icontains=filters.get('title__icontains'))
                                ).order_by("-id")
