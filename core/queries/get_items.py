@@ -11,15 +11,16 @@ def get_items_query(request):
     
     filters = dict()
     
+    # evaluate queryset lazily
+    all_items = Item.objects.all()
+    
     if request.query_params.get(PARAM_QUERY_BY_TYPE):
-        filters['type'] = request.query_params.get(PARAM_QUERY_BY_TYPE, '')
+        all_items = all_items.filter(type=request.query_params.get(PARAM_QUERY_BY_TYPE))
         
     if request.query_params.get(PARAM_QUERY_BY_TEXT):
-        filters['text__icontains'] = request.query_params.get(PARAM_QUERY_BY_TEXT, '')
-        filters['title__icontains'] = request.query_params.get(PARAM_QUERY_BY_TEXT, '')
+        all_items = all_items.filter(
+            Q(text__icontains=filters.get('text__icontains', '')) |
+            Q(title__icontains=filters.get('title__icontains', ''))
+        )
         
-    return Item.objects.filter( 
-                               Q(type=filters.get('type', '')) |
-                               Q(text__icontains=filters.get('text__icontains', '')) |
-                               Q(title__icontains=filters.get('title__icontains', ''))
-                               ).order_by("-id")
+    return all_items.order_by('-id')
