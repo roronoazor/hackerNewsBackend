@@ -5,7 +5,7 @@ from django.db.models import Q
 """
 
 PARAM_QUERY_BY_TYPE = 'type'
-PARAM_QUERY_BY_TEXT = 'text'
+PARAM_QUERY_BY_TEXT = 'search'
 
 def get_items_query(request):
     
