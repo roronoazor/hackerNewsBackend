@@ -4,5 +4,5 @@ from django.urls import path
 
 urlpatterns = [
     path('items/', GetCreateItemView.as_view(), name='items'),
-    path('items/delete/', DeleteItemView.as_view(), name='delete')
+    path('items/<uuid:id>/delete/', DeleteItemView.as_view(), name='delete')
 ]

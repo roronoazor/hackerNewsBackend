@@ -5,9 +5,8 @@ from core.models import Item
 """
 
 
-def delete_items_query(request):
+def delete_items_query(id):
     
-    id_to_remove = request.data.get("id")
-    if id_to_remove:
-        Item.objects.filter(id=id).delete()
+    # only allow for delete of items referenced from hacker news
+    Item.objects.filter(id=id, reference_id__isnull=True).delete()
     return True

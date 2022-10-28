@@ -28,8 +28,9 @@ class DeleteItemView(generics.DestroyAPIView):
     
     def delete(self, request, *args, **kwargs):
         
+        id = self.kwargs("id")
         try:
-          delete_items_query(request)
+          delete_items_query(id)
           return response.Response({'message': "success"}, status=status.HTTP_200_OK)
         except Exception as e:
             # flesh out this error handling better, dont forget
