@@ -10,9 +10,11 @@ the project gets it data from **https://hacker-news.firebaseio.com**, which it s
 
 ### THINGS TO NOTE
 1.) the application is hosted on heroku using thier free tier. thier free tier only allows 10,000 rows of data in thier database, once it exceeds 10,000 you
-run the risk of losing your data or having service denied to you.
-2.) in order to achieve the specified goal of have the project sync with hackernews every 5 mins, since no particular technology was specified, the author
+run the risk of losing your data or having service denied to you.  
+2.) in order to achieve the specified goal of having the project sync with hackernews every 5 mins, since no particular technology was specified, the author
 took advantage of the free heroku scheduler add-on that heroku offers. a custom manage.py command was created and then that command was set to run every 10
-mins by the heroku scheduler.
+mins by the heroku scheduler.  
+
+* The django app is currently hosted at **https://hacker-news-clone-1.herokuapp.com/** *
 
 *Thanks for reading.*
